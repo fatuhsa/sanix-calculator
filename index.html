@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.22.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #282a36;
+        color: #f8f8f2;
+      }
+
+      .press-start-2p-regular {
+        font-family: "Press Start 2P", system-ui;
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body class="flex items-center justify-center h-screen flex-col">
+    <h1 class="text-2xl press-start-2p-regular">SANIX</h1>
+    <div class="card w-96 bg-base-200 shadow-xl p-5">
+      <div class="form-control">
+        <input
+          type="text"
+          id="i1"
+          class="input input-bordered mb-2"
+          placeholder="First number"
+        />
+        <input
+          type="text"
+          id="i2"
+          class="input input-bordered mb-2"
+          placeholder="Second number"
+        />
+        <input
+          type="text"
+          id="res"
+          class="input input-bordered mb-2"
+          readonly
+          placeholder="Result"
+        />
+      </div>
+      <div class="btn-group flex items-center justify-center">
+        <button id="plus" class="btn btn-primary">(+)</button>
+        <button id="min" class="btn btn-secondary">(-)</button>
+        <button id="cross" class="btn btn-accent">(x)</button>
+        <button id="bagi" class="btn btn-warning">(/)</button>
+      </div>
+    </div>
+    <script type="text/javascript">
+      const getId = id => document.getElementById(id);
+
+      const i1 = getId("i1");
+      const i2 = getId("i2");
+      const res = getId("res");
+
+      const operator = operation => {
+        const num1 = parseFloat(i1.value);
+        const num2 = parseFloat(i2.value);
+        let result;
+
+        switch (operation) {
+          case "+":
+            result = num1 + num2;
+            break;
+          case "-":
+            result = num1 - num2;
+            break;
+          case "*":
+            result = num1 * num2;
+            break;
+          case "/":
+            result = num1 / num2;
+            break;
+          default:
+            result = "Invalid operation";
+        }
+
+        if (isNaN(result)) {
+          res.value = "Invalid";
+        } else {
+          res.value = result;
+        }
+      };
+
+      getId("plus").addEventListener("click", () => operator("+"));
+      getId("min").addEventListener("click", () => operator("-"));
+      getId("cross").addEventListener("click", () => operator("*"));
+      getId("bagi").addEventListener("click", () => operator("/"));
+    </script>
+  </body>
+</html>
